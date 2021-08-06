@@ -7,4 +7,4 @@ Carl Ausmees,
 Troy Jennings,
 Corey Vorsanger
 
-More coming soon
+Every four years two things happen. First the greatest athletes around the world gather for the Summer Olympic games. Second the greatest tweeters grab their phones to tweet about the Oluympic games. Which sports are being talked about in the best light? Which in the worst? In this project we will be analyzing the sentiment of tweets and replys to find the sentiment around a few of the popular Olympic sports.
