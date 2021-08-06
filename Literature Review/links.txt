@@ -1,0 +1,8 @@
+Quick tutorial on using the VADER package for sentiment scores
+https://www.geeksforgeeks.org/python-sentiment-analysis-using-vader/
+
+Vader github page
+https://github.com/cjhutto/vaderSentiment#features-and-updates
+
+
+
