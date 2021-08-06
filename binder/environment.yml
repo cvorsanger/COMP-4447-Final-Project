@@ -1,0 +1,9 @@
+name: DSFinal
+channels:
+  - defaults
+dependencies:
+  - pandas
+  - requests
+  - numpy
+  - jupyterlab
+prefix: /home/cvorsanger/miniconda3/envs/DSFinal
