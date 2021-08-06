@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cvorsanger/COMP-4447-Final-Project/HEAD)
+
 Final Project for COMP 4447, Data Science Tools 1
 
 Binder: https://mybinder.org/v2/gh/cvorsanger/COMP-4447-Final-Project/HEAD 
