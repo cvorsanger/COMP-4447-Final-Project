@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cvorsanger/COMP-4447-Final-Project/HEAD?urlpath=lab)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cvorsanger/COMP-4447-Final-Project/HEAD?urlpath=lab/workspaces/lab)
 
 Final Project for COMP 4447, Data Science Tools 1
 
