@@ -6,4 +6,6 @@ dependencies:
   - requests
   - numpy
   - jupyterlab
+  - nltk
+  - textblob
 prefix: /home/cvorsanger/miniconda3/envs/DSFinal
