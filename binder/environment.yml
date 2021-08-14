@@ -1,4 +1,4 @@
-name: DSFinal
+git name: DSFinal
 channels:
   - defaults
 dependencies:
