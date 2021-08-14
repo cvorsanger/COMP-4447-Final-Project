@@ -8,4 +8,5 @@ dependencies:
   - jupyterlab
   - nltk
   - textblob
+  - pyzmq
 prefix: /home/cvorsanger/miniconda3/envs/DSFinal
