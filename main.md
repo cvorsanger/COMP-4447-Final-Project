@@ -18,7 +18,7 @@
     - [Section 2.2: Ingestion](./notebooks/Ingestion.ipynb#ingestion)
     - [Section 2.3: Sample and Explanation](./notebooks/Ingestion.ipynb#sample)
 - [Section 3: Data Cleaning](./notebooks/Cleaning.ipynb)
-    - [Section 3.1: Initial Exploration](./notebooks/Cleaning.ipynb#explor)
+    - [Section 3.1: Initial Exploration and Cleaning](./notebooks/Cleaning.ipynb#explor)
     - [Section 3.2: Type Conversions](./notebooks/Cleaning.ipynb#type)
     - [Section 3.3: Missing Values](./notebooks/Cleaning.ipynb#missing)
     - [Section 3.4: Outliers](./notebooks/Cleaning.ipynb#outs)
