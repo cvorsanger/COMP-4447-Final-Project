@@ -22,6 +22,7 @@
     - [Section 3.2: Type Conversions](./notebooks/Cleaning.ipynb#type)
     - [Section 3.3: Missing Values](./notebooks/Cleaning.ipynb#missing)
     - [Section 3.4: Outliers](./notebooks/Cleaning.ipynb#outs)
+    - [Section 3.5: Additional Exploration](./notebooks/Cleaning.ipynb#add_exp)
 - [Section 4: Model Creation](./notebooks/Model.ipynb)
     - [Section 4.1: Feature Engineering](./notebooks/Model.ipynb#feat_eng)
     - [Section 4.2: Model](./notebooks/Model.ipynb#model)
