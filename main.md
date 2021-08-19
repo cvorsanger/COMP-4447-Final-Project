@@ -28,4 +28,4 @@
 - [Section 5: Evaluation and Conclusions](./notebooks/Eval.ipynb)
     - [Section 5.1: Results](./notebooks/Eval.ipynb#results)
     - [Section 5.2: Future Work](./notebooks/Eval.ipynb#future)
-- [Appendix 1: Master Code](./notebooks/OlympicTweets.ipynb)
+- [Appendix 1: Master Code](./notebooks/Master.ipynb)
