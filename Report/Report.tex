@@ -376,7 +376,7 @@ def clean_tweet_text(text):
         
         \noindent From the output of VADER, we generate three additional features for use in our analysis:
         \begin{itemize}
-            \item Neg, Neu, and Pos are scores for the ratios for proportions of text that fall into a negative, neutral, and positive sentiment.
+            \item \textit{Neg, Neu,} and \textit{Pos} are scores for the ratios for proportions of text that fall into a negative, neutral, and positive sentiment.
             \item Compound: a score computed by summing the valence scores of each word in the VADER lexicon and normalized to create a composite sentiment score.
             \item Sentiment: a categorical column that standardizes/generalizes the compound score into positive, neutral, and negative sentiment values.
         \end{itemize}
@@ -431,15 +431,46 @@ for index, row in olympic_df['clean_no_stops'].iteritems():
 
     \section{Evaluation and Conclusions}
         \subsection{Results}
-            hoinlongfo
-        \begin{figure}[H]
-            \includegraphics[height = 4in, width=8.5in, angle =90]{Sentiment.png}
-        \end{figure}
+        \begin{wrapfigure}{r}{0.80\textwidth}
+            \centering
+            \includegraphics[width=.9\linewidth]{bar.png}
+        \end{wrapfigure}
+        With all of our tweets scored for sentiment and polarity we can get an idea of the popular sports in the Olympics. A simple bar chart could go along way in drawing our 
+        conclusions. \\
 
+        We can also compare sentiment as well as the score differences betweetn Vader and Textblob by a scatter plot. If Vader and Textblob agree completly we should get a 
+        diagnoal line from the lower left to the upper right of each scatter plot. 
+        \begin{wrapfigure}{l}{0.7\textwidth}
+            \centering
+            \includegraphics[scale=0.5, angle =-90]{Sentiment.png}
+        \end{wrapfigure}
 
-        \begin{figure}[H]
-            \includegraphics[scale=0.5]{bar.png}
-        \end{figure}
+        It appears that all of the sports were talked about in mostly a positive light. The traditional Summer Olympic sports of gymnastics and track were overwelmingly positive with 
+        about 70\% of their tweets interpreted as positive. Of the two new sports, skateboarding and surfing, both had slightly positive reactions. Interestingly, out of all of the 
+        sports investigated surfing was talked about least neagtively. Biking was the most indifferent sport with just over 40\% of tweets interpreted as neutral tweets. \\
+
+        There does seem to be general agreement between TextBlob and Vader, although it is far from perfect. Both classified more tweets as positive then either neutral or negative. Most 
+        points are in the upper right quandrant of their respective scatter plots. This goes back to the two methods generally agreeing. It is clear that not as many tweets for skateboarding 
+        or surfing were collected. There were some tweets that the methods completly disagreed on (one said strongly positive and the other said strongly negative). Looking at the two 
+        methods combined it would appear that basketball,track, volleyball had the most positive tweets. Biking and diving look as if they have the most neautral tweets. \\
+
+        The fact that most sports were talked about positively was not surprising to us. When the Olympics are on there is generally a positive feel around them. We believe this to be 
+        for a few reasons; they are not every year, other then basketball the sports are more niche and not considered to be American major sports, the country vs. country format 
+        actually helps breed comradery. We were surprised about the small sample size we were able to collect regarding the two newer sports. While skateboarding and surfing did not 
+        seem like they were on mush we anticipated alot more tweets regarding them. \\
+
 
         \subsection{Future Work}
+        There are several areas where improvements can be made or into which we would invest additional time/resources. A few examples include:
+
+        \begin{itemize}
+            \item Exploration and comparison between originating tweet sentiment and tweet reply sentiment to analyze differences
+            \item Time-series analysis of sentiment over time for given sport(s)
+        \end{itemize}
+
+        One major aspect that could imporve this project as well is type of Twitter API you use. Unfortunatley, we were only able to use the standard API. This had Twitter's lowest rate 
+        limit and is restrictive to tweets generated in the last seven days. At the start of this project we did apply to use the Academic API but twitter denied us. The Acedemic API would 
+        have been mush more appropiate for this project. With the upgraded API we would have been able to search the full-archive of tweets dating back to 2006 when Twitter started. Also, 
+        we would have been able to pull ten million tweets. With a greater breadth of data this project could have been greatly enhanced.
+
 \end{document}
