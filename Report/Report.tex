@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{makecell}
+\usepackage{float}
 
 \title{How People are Talking About the Olympic Sports}
 \author{Troy Jennings\\Carl Ausmees\\Corey Vorsanger\\  \\COMP 4447: DS Tools 1}
@@ -33,9 +34,9 @@ framexrightmargin=15pt}
             \bigskip
             August 21, 2021
         \end{center}
-        \begin{figure}[htp]
+        \begin{figure}[H]
             \centering
-            \includegraphics[height=3in, width=2in]{tokyo.jpg}
+            \includegraphics[scale=0.5]{tokyo.jpg}
         \end{figure}
         \begin{center}
             \textit{For a more interactive report experience please go to\\
@@ -45,7 +46,6 @@ framexrightmargin=15pt}
     \end{titlepage}
 
     \tableofcontents
-    \newpage
 
     \section{Introduction}
         \subsection{Research Question}
@@ -217,10 +217,109 @@ def get_tweets(access_token, query, max_tweets=10, tweet_limit=10):
         \end{itemize}
     \section{Data Cleaning}
         \subsection{Initial Exploration and Cleaning}
+            So, now we have tweets regarding the olympic sports of basketball, biking, diving, gymnastics, skateboarding, surfing, track, and volleyball. All of the tweets were collected
+            into a single dataframe. This will make it easier for us to clean, look at, and use all of the tweets at once. During this process a new variable was created,
+            \textit{sport}. This varibale will track for us the sport that each tweet is talking about and allows us to segment the tweets later when we build our sentiment model. \\
+        
+            Using the shape function we find that we have 30554 tweets. Now, time to get our hands dirty and clean the data. \\
+        
+            As with all text data there is alot of cleaning that can be done. For this project we will be concentrating on removal of certain entities such as url links and hashtags, removal
+            of stopwords, lemmatization, and general NLP text cleaning. After this NLP specific cleaning we should be ready to analyze the sentiment of tweets.\\
+
+            Using the below function we were able to use regular expressions to filter the text of our tweets. This function will remove urls, user handles, hashtags, punctuations, new line 
+            characters, and numbers that are in the text of the tweet. \\
+
+            \begin{lstlisting}[caption=Regular Expression Cleaner]
+import re
+def clean_tweet_text(text):
+    # Define any custom replacement pattern and join into an 
+    #aggregated pattern
+    replacements = [
+        r'(@[\w]+)',
+        r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9\\ 
+            a-fA-F][0-9a-fA-F]))+',
+        r'(#\w+)',
+        r'[\$&+,:;=?@#|\'<>.^*()%!-/]',
+        r'\n',
+        r'[0-9]+'
+    ]
+    aggregate_pattern = r'|'.join(replacements)
+    # make regex substitutions in one pass
+    clean_text = re.sub(aggregate_pattern, '', text) 
+    
+    # Return the unicode-stripped text in lowercase
+    return clean_text.encode(encoding='ascii', errors='ignore')\\
+        .decode('ascii').lower()
+            \end{lstlisting}
+
+            Stopwords are common words in the English language such as the, an, a, etc. These words are used much in English but convey little meaning. In most NLP applictions stop 
+            words have very little value and only slow down your model due to their high frequency. In sentiment analysis they also have the potential to skew our model toward a neutral
+            outcome. The NLTK library has provides a wide assortment of tools to use for NLP. It even includes a list of stopwords we can use. By iterating over our text and comparing
+            the text to the list of stopwords we can remove them for our tweets. \\
+
+            Next we will lemmatize our tweets. Lemmatization is a process where words are converted to their dictionary forms. For instance the word "walking" will be analyzed as "walk". 
+            Lemmatization will ensure that we have proper words. This is the main reason why we chose to lemmatize instead of stemming as the lexicon in Vader works much better with real 
+            words. The NLTK library has a function **WordNetLemmatizer** built in. We will the **WordNetLemmatizer** to handle the lemmatization for us. \\
+
         \subsection{Type Conversion}
+            We needed to change a few data types. Thankfully, the tweet text was already given to us as an object (string). To make our analysis easier we changed the \textit{tweet id} and the 
+            \textit{conversation ids} of type int from type object. To facilitate the time aspect of our analysis we needed to also covert the \textit{created\_at} variable to a datetime object.\\
+
+            This leaves us with these variable types, the correct variable types:
+            
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    id & int32\\
+                    \hline
+                    created\_at & datetime64[ns, UTC]\\
+                    \hline
+                    conversation\_id & int32\\
+                    \hline
+                    text & object\\
+                    \hline
+                    sport & object\\
+                    \hline
+                    withheld & object\\
+                    \hline
+                    clean\_text & object\\
+                    \hline
+                    clean\_no\_stops & object\\
+                    \hline
+                    lemma\_text & object\\
+                    \hline
+                \end{tabular}
+            \end{center}
         \subsection{Missing Values}
+            Twitter keeps track of everything about a tweet. This is good news to us because the twitter API rarely gives you missing values. The below missing value plot shows that there is no 
+            important missing values. \\
+
+            In fact all of the missing values appear to be in the withheld column. The "withheld" column just tells us in which countries these tweets are not allowed in. This is not
+            important in our analysis and we will therefore just drop that column.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.33]{missing.png}
+            \end{figure}
         \subsection{Outliers}
-        \subsection{Additional Exloration}
+            With text data it can be difficult to define what an outlier is. Obviously, people can say obnoxiously positive and negative stuff without really nowing anything; this 
+            \textit{definatly} doesn't happen on twitter (wink wink). However, the only real way to detict this is after the sentiment model is built. Also how do we know what are 
+            genuine tweets that should be factored in our anaysis and bogus tweets that should not. We do assume that most people that are tweeting about the Olympics are at least 
+            watching them. This is also our main target audience in this study; average peeople watching the Olympics. With it being impossible to detect bogus tweets from the API 
+            and our assumption that a vast majoroity of our tweets originate from our target audience, we decide to anaylze all of the tweets we could get. Potentially this could skew
+             our sentiment scores. However, we feel confident that with the number of good tweets this potential skew effect should be drowned out.
+        \subsection{Additional Exploration}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.5]{sporttweet.png}
+        \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.4]{wordcloud.png}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.4]{sportsclouds.png}
+            \end{figure}
     \section{Model Creation}
         \subsection{Model}
     \section{Evaluation and Conclusions}
